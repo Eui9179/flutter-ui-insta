@@ -21,12 +21,13 @@ enum CustomTheme {
   final AbsThemeShadows appShadows;
 
   ThemeData get themeData {
-    switch (this) {
-      case CustomTheme.dark:
-        return darkTheme;
-      case CustomTheme.light:
-        return lightTheme;
-    }
+    return darkTheme;
+    // switch (this) {
+    //   case CustomTheme.dark:
+    //     return darkTheme;
+    //   case CustomTheme.light:
+    //     return lightTheme;
+    // }
   }
 }
 

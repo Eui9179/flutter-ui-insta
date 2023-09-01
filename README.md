@@ -4,7 +4,23 @@
 
 ---
 
-### 1. instagram
+### 23.09.01 Shake Count App
+`shake: ^2.2.0`, 
+`velocity_x: ^4.1.1`, 
+`flutter_native_splash: ^2.3.2`,
+`WidgetsBindingObserver`
+
+- velocity_x를 이용한 위젯 생성
+- flutter_native_splash를 이용한 스플래쉬 스크린 생성 
+    > https://pub.dev/packages/flutter_native_splash
+
+- WidgetsBindingObserver를 이용한 AppLifecycleState 제어
+    > https://velog.io/@leui9179/Flutter-AppLifecycleState
+
+
+---
+
+### 23.08.31 instagram
 `google_fonts: ^5.1.0`, 
 `BottomNavigationBar`,
 `SingleChildScrollView`

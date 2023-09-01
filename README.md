@@ -10,13 +10,17 @@
 `flutter_native_splash: ^2.3.2`,
 `WidgetsBindingObserver`
 
-- velocity_x를 이용한 위젯 생성
-- flutter_native_splash를 이용한 스플래쉬 스크린 생성 
+- `velocity_x`를 이용한 위젯 생성
+- `flutter_native_splash`를 이용한 스플래쉬 스크린 생성 
     > https://pub.dev/packages/flutter_native_splash
 
-- WidgetsBindingObserver를 이용한 AppLifecycleState 제어
+- `WidgetsBindingObserver`를 이용한 AppLifecycleState 제어
     > https://velog.io/@leui9179/Flutter-AppLifecycleState
 
+<img src = "https://github.com/Eui9179/flutter-ui-practice/assets/83222282/5963f00d-6689-464e-b607-67c13f280717" width="width 200" height="400">
+<img src = "https://github.com/Eui9179/flutter-ui-practice/assets/83222282/addf5814-b8d4-46ac-8b3c-adf1f9d99a50" width="width 200" height="400">
+
+<img src = "https://github.com/Eui9179/flutter-ui-practice/assets/83222282/e823bfb3-d929-42be-a984-6480093caf0b" width="width 400" height="400">
 
 ---
 

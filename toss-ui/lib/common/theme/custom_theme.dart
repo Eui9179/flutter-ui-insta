@@ -21,12 +21,7 @@ enum CustomTheme {
   final AbsThemeShadows appShadows;
 
   ThemeData get themeData {
-    switch (this) {
-      case CustomTheme.dark:
-        return darkTheme;
-      case CustomTheme.light:
-        return lightTheme;
-    }
+    return darkTheme;
   }
 }
 
@@ -46,7 +41,4 @@ ThemeData darkTheme = ThemeData(
     brightness: Brightness.dark,
     scaffoldBackgroundColor: AppColors.veryDarkGrey,
     textTheme: ThemeData(brightness: Brightness.dark).textTheme,
-    colorScheme: ColorScheme.fromSeed(
-        seedColor: CustomTheme.dark.appColors.seedColor,
-        brightness: Brightness.dark));
-
+    colorScheme: const ColorScheme.dark(background: AppColors.veryDarkGrey));

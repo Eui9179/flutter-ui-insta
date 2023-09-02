@@ -37,3 +37,27 @@
       child: SingleChildScrollView()
     )
     ```
+- Timeago 라이브러리 사용
+- Sliver 사용
+  ```dart
+      return Scaffold(
+        body: CustomScrollView(
+          slivers: [
+            const SliverAppBar(
+              title: Text("알림"),
+            ),
+            SliverList(
+                delegate: SliverChildBuilderDelegate(
+              (context, index) => NotificationItemWidget(
+                notification: notificationDummies[index],
+                onTap: () {
+                  NotificationDialog([notificationDummies[0], notificationDummies[1]]).show();
+                },
+              ),
+              childCount: notificationDummies.length,
+            ))
+          ],
+        ),
+      );
+  ```
+- 

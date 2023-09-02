@@ -1,16 +1,39 @@
-# fast_app_base
+## 구현한 기능
 
-A new Flutter project.
+- Splash 화면
+- Home 화면 (`velocity_x`, `Stack 위젯을 사용한 알림 아이콘 표시`)
+  ```dart
+  Stack(
+    children: [
+      Image.asset(
+        "$basePath/icon/notification.png",
+        height: 30,
+      ),
+      if (_showRedDot)
+        Positioned.fill(
+            child: Align(
+          alignment: Alignment.topRight,
+          child: Container(
+            width: 6,
+            height: 6,
+            decoration: const BoxDecoration(
+              shape: BoxShape.circle,
+              color: Colors.red,
+            ),
+          ),
+        ))
+      ],
+    ),
+  ```
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- BottomNavigation
+- Pull to refresh
+    ```dart
+    RefreshIndicator(
+      edgeOffset: TossAppBar.appBarHeight,
+      onRefresh: () async {
+        await sleepAsync(1000.ms);
+      },
+      child: SingleChildScrollView()
+    )
+    ```

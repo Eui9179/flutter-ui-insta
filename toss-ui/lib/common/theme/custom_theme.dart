@@ -40,5 +40,5 @@ ThemeData darkTheme = ThemeData(
     visualDensity: VisualDensity.adaptivePlatformDensity,
     brightness: Brightness.dark,
     scaffoldBackgroundColor: AppColors.veryDarkGrey,
-    textTheme: ThemeData(brightness: Brightness.dark).textTheme,
-    colorScheme: const ColorScheme.dark(background: AppColors.veryDarkGrey));
+    colorScheme: const ColorScheme.dark(background: AppColors.veryDarkGrey)
+);

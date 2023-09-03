@@ -26,14 +26,15 @@ class HomeFragment extends StatelessWidget {
               await sleepAsync(1000.ms);
             },
             child: SingleChildScrollView(
-              padding: const EdgeInsets.only(top: TossAppBar.appBarHeight, bottom: MainScreenState.bottomNavigatorHeight),
+              padding: const EdgeInsets.only(
+                top: TossAppBar.appBarHeight,
+                bottom: MainScreenState.bottomNavigatorHeight,
+              ),
               child: Column(
                 children: [
                   BigButton(
                     "토스뱅크",
-                    onTap: () {
-                      context.showSnackbar('tap Bid button');
-                    },
+                    onTap: () => context.showSnackbar('tap Bid button'),
                   ),
                   height10,
                   RoundedContainer(

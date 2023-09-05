@@ -1,6 +1,7 @@
 import 'package:fast_app_base/common/common.dart';
 import 'package:fast_app_base/common/widget/w_arrow.dart';
 import 'package:fast_app_base/common/widget/w_rounded_container.dart';
+import 'package:fast_app_base/screen/main/tab/stock/tab/w_interest_stock_list.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../common/widget/w_long_button.dart';
@@ -68,27 +69,33 @@ class MyStockFragment extends StatelessWidget {
         color: context.appColors.roundedLayoutBackground,
         child: Column(
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            Column(
               children: [
-                '관심주식'.text.bold.make(),
-                '편집하기'.text.color(context.appColors.lessImportant).make(),
-              ],
-            ),
-            height20,
-            Tap(
-              onTap: () {},
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  '기본'.text.make(),
-                  const Arrow(
-                    direction: AxisDirection.up,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    '관심주식'.text.bold.make(),
+                    '편집하기'.text.color(context.appColors.lessImportant).make(),
+                  ],
+                ),
+                height20,
+                Tap(
+                  onTap: () {},
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      '기본'.text.make(),
+                      const Arrow(
+                        direction: AxisDirection.up,
+                      ),
+                    ],
                   ),
-                ],
-              ),
-            )
+                ),
+              ],
+            ).pSymmetric(h: 20, v: 20),
+            const InterestStockList(),
           ],
-        ).pSymmetric(h: 20, v: 20),
+        ),
+
       );
 }

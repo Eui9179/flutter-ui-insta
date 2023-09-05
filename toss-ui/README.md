@@ -83,3 +83,48 @@
   else
     const TodaysDiscoveryFragment()
   ```
+  
+- mixin, with로 Provider 만들기
+  
+  ```dart
+  // Provider
+  abstract mixin class StockPercentageDataProvider {
+  
+    int get currentPrice;
+  
+    int get yesterdayClosePrice;
+  
+    double get todayPercentage =>
+            ((currentPrice - yesterdayClosePrice) / yesterdayClosePrice * 100).toPrecision(2);
+  
+    String get todayPercentageString => "$symbol$todayPercentage%";
+  
+    bool get isPlus => currentPrice > yesterdayClosePrice;
+  
+    bool get isSame => currentPrice == yesterdayClosePrice;
+  
+    bool get isMinus => currentPrice < yesterdayClosePrice;
+  
+    String get symbol =>
+            isSame
+                    ? ""
+                    : isPlus
+                    ? "+"
+                    : "";
+  }
+  
+  // Consumer 클래스
+  class PopularStock extends SimpleStock with StockPercentageDataProvider {
+    @override
+    final int yesterdayClosePrice;
+  
+    @override
+    final int currentPrice;
+  
+    PopularStock(
+            {required this.yesterdayClosePrice,
+              required this.currentPrice,
+              required String stockName})
+            : super(stockName);
+  }
+  ```

@@ -10,21 +10,24 @@ class StockItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
-      Image.asset(
-        stock.stockImagePath,
-        width: 36,
-      ),
-      width10,
-      stock.name.text.bold.size(15).make(),
-      emptyExpanded,
-      Column(
-        crossAxisAlignment: CrossAxisAlignment.end,
-        children: [
-          stock.todayPercentageString.text.size(16).color(stock.getPriceColor(context)).make(),
-          '${stock.currentPrice.toComma()}원'.text.color(context.appColors.lessImportant).make(),
-        ],
-      )
-    ]).pSymmetric(v: 5, h: 20);
+    return Container(
+      color: context.appColors.appBarBackground,
+      child: Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
+        Image.asset(
+          stock.stockImagePath,
+          width: 36,
+        ),
+        width10,
+        stock.name.text.bold.size(15).make(),
+        emptyExpanded,
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            stock.todayPercentageString.text.size(16).color(stock.getPriceColor(context)).make(),
+            '${stock.currentPrice.toComma()}원'.text.color(context.appColors.lessImportant).make(),
+          ],
+        )
+      ]).pSymmetric(v: 5, h: 20),
+    );
   }
 }

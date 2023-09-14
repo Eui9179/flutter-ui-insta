@@ -128,3 +128,7 @@
             : super(stockName);
   }
   ```
+
+- 검색 기능(json을 이용한 자동완성)
+- GetX로 리스트 상태 관리 - `search_stock_data.dart`
+- TextEditingController

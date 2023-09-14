@@ -1,5 +1,9 @@
 class SimpleStock {
-  final String stockName;
+  final String name;
 
-  SimpleStock(this.stockName);
+  SimpleStock(this.name);
+
+  factory SimpleStock.of(dynamic json) {
+    return SimpleStock(json["name"]);
+  }
 }

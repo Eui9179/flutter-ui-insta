@@ -60,4 +60,5 @@ abstract class AbstractThemeColors {
 
   Color get plus => const Color.fromARGB(255, 230, 71, 83);
   Color get minus => const Color.fromARGB(255, 83, 140, 255);
+  Color get searchHistory => const Color.fromARGB(255, 59, 60, 68);
 }

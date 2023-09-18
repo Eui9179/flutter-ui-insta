@@ -4,6 +4,22 @@
 
 ---
 
+### 23.09.16 Toss clone
+`getx`,
+`velocity_x`,
+`flutter_native_splash`,
+`after_layout`
+
+- `velocity_x`를 이용한 위젯 생성
+- `flutter_native_splash`를 이용한 스플래쉬 스크린 생성 
+- `BottomNavigation` 구현
+- Pull to refresh `RefreshIndicator`(스크롤 위로 하여 새로고침)
+- SliverList 사용
+- TabBar 사용
+- GetX를 이용한 검색, 자동완성 기능
+- ExpansionTile 사용
+
+
 ### 23.09.01 Shake Count App
 `shake: ^2.2.0`, 
 `velocity_x: ^4.1.1`, 

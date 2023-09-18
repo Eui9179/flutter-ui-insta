@@ -33,7 +33,7 @@ class SearchStockData extends GetxController {
   }
   
   void addHistory(String stockName) {
-    searchHistoryList.add(stockName);
+    searchHistoryList.insert(0, stockName);
   }
 
   String removeHistory(int index) {

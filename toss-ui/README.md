@@ -129,9 +129,26 @@
   }
   ```
 
-- 검색 기능(json을 이용한 자동완성)
+- 검색 기능(json을 이용한 자동완성) `search_stock_data.dart`
+  ```java
+  ...생략
+  RxList<SimpleStock> autoCompleteList = <SimpleStock>[].obs;
+
+  ...생략
+
+  void search(String keyword) {
+    if (keyword.isEmpty) {
+      autoCompleteList.clear();
+      return;
+    }
+    autoCompleteList.value = stocks.where((element) => element.name.contains(keyword)).toList();
+  }
+  ```
 - GetX로 리스트 상태 관리 - `search_stock_data.dart`
-- GetX의 RX 데이터
+
 - TextEditingController
+
 - Switch, Slider, showDatePicker
+  `s_setting.dart`
+
 - ExpansionTile

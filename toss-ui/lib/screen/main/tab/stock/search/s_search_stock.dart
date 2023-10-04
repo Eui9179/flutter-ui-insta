@@ -38,7 +38,7 @@ class _SearchStockScreenState extends State<SearchStockScreen> with SearchStockD
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: StockSearchAppBar(controller: controller),
-      body: Obx( // Getx가 관찰하고 있다가 값이 변경되면 갱신해준다.
+      body: Obx(
         () => searchData.autoCompleteList.isEmpty
             ? ListView(
                 children: const [

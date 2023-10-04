@@ -20,7 +20,7 @@ class PopularStockItem extends StatelessWidget {
     return Row(
       children: [
         SizedBox(width: 30, child: number.text.make()),
-        width30,
+        width20,
         stock.name.text.make(),
         emptyExpanded,
         stock.todayPercentageString.text

@@ -1,4 +1,3 @@
-import 'package:fast_app_base/common/cli_common.dart';
 import 'package:fast_app_base/common/common.dart';
 import 'package:fast_app_base/common/widget/w_rounded_container.dart';
 import 'package:fast_app_base/screen/main/s_main.dart';
@@ -6,6 +5,7 @@ import 'package:fast_app_base/screen/main/tab/home/bank_accounts_dummy.dart';
 import 'package:fast_app_base/screen/main/tab/home/w_bank_account.dart';
 import 'package:fast_app_base/screen/main/tab/home/w_toss_app_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
 import '../../../../common/widget/w_bid_button.dart';
 
@@ -52,7 +52,7 @@ class HomeFragment extends StatelessWidget {
               ).pSymmetric(h: 16),
             ),
           ),
-          TossAppBar(),
+          const TossAppBar(),
         ],
       ),
     );

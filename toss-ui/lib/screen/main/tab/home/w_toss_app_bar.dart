@@ -1,6 +1,7 @@
 import 'package:fast_app_base/common/common.dart';
 import 'package:fast_app_base/screen/notification/s_notification.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
 
 class TossAppBar extends StatefulWidget {
@@ -33,7 +34,7 @@ class _TossAppBarState extends State<TossAppBar> {
           ),
           width10,
           Tap(
-            onTap: () => Nav.push(NotificationScreen()),
+            onTap: () => Nav.push(const NotificationScreen()),
             child: Stack(
               children: [
                 Image.asset(
@@ -55,7 +56,7 @@ class _TossAppBarState extends State<TossAppBar> {
                   ))
               ],
             ),
-          ),
+          ).animate().shake(duration: 1100.ms, hz: 3),
           width10,
         ],
       ),

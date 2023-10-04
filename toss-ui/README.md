@@ -152,3 +152,4 @@
   `s_setting.dart`
 
 - ExpansionTile
+- flutter_animate

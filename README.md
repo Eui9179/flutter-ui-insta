@@ -18,6 +18,8 @@
 - TabBar 사용
 - GetX를 이용한 검색, 자동완성 기능
 - ExpansionTile 사용
+- flutter_animate를 사용한 아이콘 애니메이션 적용
+- animations을 사용하여 스크롤에 위치에 따른 앱 바 크기 조절 애니메이션 적용
 
 
 ### 23.09.01 Shake Count App

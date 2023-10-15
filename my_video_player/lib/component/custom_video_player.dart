@@ -20,10 +20,12 @@ class CustomVideoPlayer extends StatefulWidget {
   State<CustomVideoPlayer> createState() => _CustomVideoPlayerState();
 }
 
-class _CustomVideoPlayerState extends State<CustomVideoPlayer> {
+class _CustomVideoPlayerState extends State<CustomVideoPlayer>
+    with SingleTickerProviderStateMixin {
+  Duration controlShowDuration = const Duration(milliseconds: 250);
   VideoPlayerController? videoController;
+  Timer? timer;
   bool showControls = false;
-  bool usedTimer = false;
 
   @override
   void initState() {
@@ -48,31 +50,27 @@ class _CustomVideoPlayerState extends State<CustomVideoPlayer> {
     return GestureDetector(
       onTap: () {
         setState(() => showControls = !showControls);
-        if (usedTimer) {
-          usedTimer = false;
-          return;
-        }
-        usedTimer = true;
-        if (showControls == true) {
-          Future.delayed(
+        if (showControls) {
+          timer = Timer(
             const Duration(seconds: 3),
-            () {
-              if (usedTimer) {
-                setState(() => showControls = !showControls);
-                usedTimer = false;
-              }
-            },
+            hideControls,
           );
+        } else {
+          timer?.cancel();
         }
       },
       child: AspectRatio(
         aspectRatio: videoController!.value.aspectRatio,
         child: Stack(children: [
           VideoPlayer(videoController!),
-          if (showControls)
-            Container(
+          AnimatedOpacity(
+            opacity: showControls ? 1 : 0,
+            duration: controlShowDuration,
+            curve: Curves.easeIn,
+            child: Container(
               color: Colors.black.withOpacity(0.5),
             ),
+          ),
           Positioned(
             bottom: 0,
             right: 0,
@@ -85,8 +83,9 @@ class _CustomVideoPlayerState extends State<CustomVideoPlayer> {
                   Expanded(
                     child: Slider(
                       onChanged: (double val) {
-                        videoController!
-                            .seekTo(Duration(microseconds: val.toInt()));
+                        videoController!.seekTo(Duration(
+                          microseconds: val.toInt(),
+                        ));
                       },
                       value: videoController!.value.position.inMicroseconds
                           .toDouble(),
@@ -100,37 +99,52 @@ class _CustomVideoPlayerState extends State<CustomVideoPlayer> {
               ),
             ),
           ),
-          if (showControls)
-            Align(
-              alignment: Alignment.topRight,
-              child: CustomIconButton(
-                onPressed: widget.onNewVideoPressed,
-                iconData: Icons.photo_camera_back,
-              ),
-            ),
-          if (showControls)
-            Align(
-              alignment: Alignment.center,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  CustomIconButton(
-                    onPressed: onReversePressed,
-                    iconData: Icons.rotate_left,
-                  ),
-                  CustomIconButton(
-                    onPressed: onPlayPressed,
-                    iconData: videoController!.value.isPlaying
-                        ? Icons.pause
-                        : Icons.play_arrow,
-                  ),
-                  CustomIconButton(
-                    onPressed: onForwardPressed,
-                    iconData: Icons.rotate_right,
-                  ),
-                ],
-              ),
-            ),
+          // if (showControls)
+          AnimatedSwitcher(
+            switchInCurve: Curves.easeIn,
+            switchOutCurve: Curves.easeIn,
+            duration: controlShowDuration,
+            child: showControls
+                ? Align(
+                    key: const Key('add-video-button'),
+                    alignment: Alignment.topRight,
+                    child: CustomIconButton(
+                      onPressed: widget.onNewVideoPressed,
+                      iconData: Icons.photo_camera_back,
+                    ),
+                  )
+                : const SizedBox(key: Key('empty')),
+          ),
+          AnimatedSwitcher(
+            switchInCurve: Curves.easeIn,
+            switchOutCurve: Curves.easeIn,
+            duration: controlShowDuration,
+            child: showControls
+                ? Align(
+                    alignment: Alignment.center,
+                    child: Row(
+                      key: const Key('video-controller'),
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        CustomIconButton(
+                          onPressed: onReversePressed,
+                          iconData: Icons.rotate_left,
+                        ),
+                        CustomIconButton(
+                          onPressed: onPlayPressed,
+                          iconData: videoController!.value.isPlaying
+                              ? Icons.pause
+                              : Icons.play_arrow,
+                        ),
+                        CustomIconButton(
+                          onPressed: onForwardPressed,
+                          iconData: Icons.rotate_right,
+                        ),
+                      ],
+                    ),
+                  )
+                : const SizedBox(key: Key('empty')),
+          ),
         ]),
       ),
     );
@@ -187,7 +201,6 @@ class _CustomVideoPlayerState extends State<CustomVideoPlayer> {
   @override
   void didUpdateWidget(covariant CustomVideoPlayer oldWidget) {
     super.didUpdateWidget(oldWidget);
-
     if (oldWidget.video.path != widget.video.path) {
       initializeController();
     }
@@ -200,5 +213,9 @@ class _CustomVideoPlayerState extends State<CustomVideoPlayer> {
         color: Colors.white,
       ),
     );
+  }
+
+  void hideControls() {
+    setState(() => showControls = false);
   }
 }

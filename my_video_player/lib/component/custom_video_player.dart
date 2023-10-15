@@ -174,6 +174,7 @@ class _CustomVideoPlayerState extends State<CustomVideoPlayer>
     }
 
     videoController!.seekTo(position);
+    resetTimer();
   }
 
   void onForwardPressed() {
@@ -188,6 +189,7 @@ class _CustomVideoPlayerState extends State<CustomVideoPlayer>
     }
 
     videoController!.seekTo(position);
+    resetTimer();
   }
 
   void onPlayPressed() {
@@ -196,6 +198,7 @@ class _CustomVideoPlayerState extends State<CustomVideoPlayer>
     } else {
       videoController!.play();
     }
+    resetTimer();
   }
 
   @override
@@ -212,6 +215,14 @@ class _CustomVideoPlayerState extends State<CustomVideoPlayer>
       style: const TextStyle(
         color: Colors.white,
       ),
+    );
+  }
+
+  void resetTimer() {
+    timer?.cancel();
+    timer = Timer(
+      const Duration(seconds: 3),
+      hideControls,
     );
   }
 

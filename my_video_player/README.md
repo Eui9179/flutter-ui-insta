@@ -1,5 +1,6 @@
 # Used
 
+- AnimatedSwitcher
 - VideoPlayer
 - ImagePicker
 - Stack

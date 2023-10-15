@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -22,6 +23,7 @@ class CustomVideoPlayer extends StatefulWidget {
 class _CustomVideoPlayerState extends State<CustomVideoPlayer> {
   VideoPlayerController? videoController;
   bool showControls = false;
+  bool usedTimer = false;
 
   @override
   void initState() {
@@ -46,6 +48,22 @@ class _CustomVideoPlayerState extends State<CustomVideoPlayer> {
     return GestureDetector(
       onTap: () {
         setState(() => showControls = !showControls);
+        if (usedTimer) {
+          usedTimer = false;
+          return;
+        }
+        usedTimer = true;
+        if (showControls == true) {
+          Future.delayed(
+            const Duration(seconds: 3),
+            () {
+              if (usedTimer) {
+                setState(() => showControls = !showControls);
+                usedTimer = false;
+              }
+            },
+          );
+        }
       },
       child: AspectRatio(
         aspectRatio: videoController!.value.aspectRatio,
@@ -63,9 +81,7 @@ class _CustomVideoPlayerState extends State<CustomVideoPlayer> {
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: Row(
                 children: [
-                  renderTimeTextFromDuration(
-                    videoController!.value.position,
-                  ),
+                  renderTimeTextFromDuration(videoController!.value.position),
                   Expanded(
                     child: Slider(
                       onChanged: (double val) {
@@ -79,9 +95,7 @@ class _CustomVideoPlayerState extends State<CustomVideoPlayer> {
                           .toDouble(),
                     ),
                   ),
-                  renderTimeTextFromDuration(
-                    videoController!.value.duration,
-                  ),
+                  renderTimeTextFromDuration(videoController!.value.duration),
                 ],
               ),
             ),
@@ -142,7 +156,7 @@ class _CustomVideoPlayerState extends State<CustomVideoPlayer> {
     Duration position = Duration();
 
     if (currentPosition.inSeconds > 3) {
-      position = currentPosition - Duration(seconds: 3);
+      position = currentPosition - const Duration(seconds: 3);
     }
 
     videoController!.seekTo(position);
@@ -152,11 +166,11 @@ class _CustomVideoPlayerState extends State<CustomVideoPlayer> {
     final maxPosition = videoController!.value.duration;
     final currentPosition = videoController!.value.position;
 
-    Duration position = Duration();
+    Duration position = const Duration();
 
-    if ((maxPosition - Duration(seconds: 3)).inSeconds >
+    if ((maxPosition - const Duration(seconds: 3)).inSeconds >
         currentPosition.inSeconds) {
-      position = currentPosition + Duration(seconds: 3);
+      position = currentPosition + const Duration(seconds: 3);
     }
 
     videoController!.seekTo(position);

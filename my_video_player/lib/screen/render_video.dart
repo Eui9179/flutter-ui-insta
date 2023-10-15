@@ -4,12 +4,21 @@ import 'package:my_video_player/component/custom_video_player.dart';
 
 class RenderVideo extends StatelessWidget {
   final XFile video;
-  const RenderVideo({super.key, required this.video});
+  final GestureTapCallback onNewVideoPressed;
+
+  const RenderVideo({
+    super.key,
+    required this.video,
+    required this.onNewVideoPressed,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: CustomVideoPlayer(video: video),
+      child: CustomVideoPlayer(
+        video: video,
+        onNewVideoPressed: onNewVideoPressed,
+      ),
     );
   }
 }

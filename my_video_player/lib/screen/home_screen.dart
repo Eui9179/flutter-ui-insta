@@ -19,7 +19,10 @@ class _HomeScreenState extends State<HomeScreen> {
       backgroundColor: Colors.black,
       body: video == null
           ? RenderEmpty(onTap: onNewVideoPressed)
-          : RenderVideo(video: video!),
+          : RenderVideo(
+              video: video!,
+              onNewVideoPressed: onNewVideoPressed,
+            ),
     );
   }
 

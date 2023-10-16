@@ -5,12 +5,15 @@
 ---
 
 ### 23.10.15 Video Player
+
 `video_player`
 `image_picker`
 - AnimatedSwitcher를 이용하여 비디오 컨트롤러 애니메이션 적용
 - Stack
 - Positioned
 - LinearGradient
+
+![화면 기록 2023-10-16 오전 3 43 25](https://github.com/Eui9179/flutter-ui-practice/assets/83222282/37c432d4-6e7e-4032-87be-073219eb876d)
 
 ### 23.09.16 Toss clone
 `getx`,
@@ -29,6 +32,7 @@
 - flutter_animate를 사용한 아이콘 애니메이션 적용
 - animations을 사용하여 스크롤에 위치에 따른 앱 바 크기 조절 애니메이션 적용
 
+<img src = "https://github.com/Eui9179/flutter-ui-practice/assets/83222282/af7d722b-04e6-4890-837d-d470185149ba" width="width 400" height="400">
 
 ### 23.09.01 Shake Count App
 `shake: ^2.2.0`, 

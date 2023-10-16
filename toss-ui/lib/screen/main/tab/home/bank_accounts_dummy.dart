@@ -19,3 +19,7 @@ final List<BankAccount> bankAccounts = [
   bankAccountToss,
   bankAccountKakao,
 ];
+
+main() {
+  
+}

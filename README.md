@@ -4,6 +4,14 @@
 
 ---
 
+### 23.10.15 Video Player
+`video_player`
+`image_picker`
+- AnimatedSwitcher를 이용하여 비디오 컨트롤러 애니메이션 적용
+- Stack
+- Positioned
+- LinearGradient
+
 ### 23.09.16 Toss clone
 `getx`,
 `velocity_x`,

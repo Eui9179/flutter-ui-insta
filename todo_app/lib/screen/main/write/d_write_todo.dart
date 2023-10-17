@@ -2,17 +2,23 @@ import 'package:fast_app_base/common/common.dart';
 import 'package:fast_app_base/common/dart/extension/datetime_extension.dart';
 import 'package:fast_app_base/common/widget/constant_widget.dart';
 import 'package:fast_app_base/common/widget/w_round_button.dart';
+import 'package:fast_app_base/data/memory/vo_todo.dart';
 import 'package:fast_app_base/screen/main/write/vo_write_todo_result.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 DateTime _selectedDate = DateTime.now();
 
-Future<WriteTodoResult?> writeTodoBottomSheet(BuildContext context) {
+Future<WriteTodoResult?> writeTodoBottomSheet(
+  BuildContext context, {
+  Todo? editTodo,
+}) {
   const double bottomSheetRadius = 15;
-  final textController = TextEditingController();
+  final textController = TextEditingController(text: editTodo?.title);
   final node = FocusNode();
 
   return showModalBottomSheet<WriteTodoResult?>(
+    useRootNavigator: true,
     isScrollControlled: true,
     context: context,
     backgroundColor: context.backgroundColor,
@@ -38,11 +44,22 @@ Future<WriteTodoResult?> writeTodoBottomSheet(BuildContext context) {
                   '할일을 작성해주세요'.text.size(18).bold.make(),
                   spacer,
                   _selectedDate.formattedDate.text.make(),
-                  IconButton(
-                    onPressed: () => _selectDate(context, setState),
-                    icon: const Icon(Icons.calendar_month),
-                  ),
+                  // IconButton(
+                  //   onPressed: () => _selectDate(context, setState),
+                  //   icon: const Icon(Icons.calendar_month),
+                  // ),
                 ],
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height / 4,
+                child: CupertinoDatePicker(
+                  mode: CupertinoDatePickerMode.date,
+                  initialDateTime:
+                      editTodo == null ? _selectedDate : editTodo.dueDate,
+                  onDateTimeChanged: (DateTime date) {
+                    setState(() => _selectedDate = date);
+                  },
+                ),
               ),
               Row(
                 children: [
@@ -51,16 +68,23 @@ Future<WriteTodoResult?> writeTodoBottomSheet(BuildContext context) {
                       autofocus: true,
                       focusNode: node,
                       controller: textController,
+                      decoration: InputDecoration(
+                          focusedBorder: UnderlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: context.primaryColor))),
                     ),
                   ),
                   RoundButton(
                     text: '추가',
+                    height: 40,
+                    borderRadius: 12,
+                    bgColor: context.primaryColor,
                     onTap: () => addTodo(context, textController),
                   ),
                 ],
               ).pSymmetric(v: 20)
             ],
-          ).pSymmetric(v: 12, h: 20),
+          ).pSymmetric(v: 16, h: 20),
         );
       });
     },

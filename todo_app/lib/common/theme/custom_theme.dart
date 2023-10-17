@@ -9,7 +9,7 @@ enum CustomTheme {
   dark,
   light;
 
-  static MaterialColor primarySwatchColor = Colors.lightBlue;
+  static MaterialColor primarySwatchColor = Colors.cyan;
 
   AbstractThemeColors get appColors {
     switch (this) {
@@ -40,6 +40,7 @@ enum CustomTheme {
 
   static ThemeData lightTheme = ThemeData(
       primarySwatch: primarySwatchColor,
+      primaryColor: primarySwatchColor,
       visualDensity: VisualDensity.adaptivePlatformDensity,
       brightness: Brightness.light,
       // textTheme: GoogleFonts.singleDayTextTheme(

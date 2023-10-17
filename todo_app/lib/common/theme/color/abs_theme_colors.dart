@@ -41,4 +41,12 @@ abstract class AbstractThemeColors {
   Color get blueButtonBackground => AppColors.darkBlue;
 
   Color get bottomSheetBackground => drawerBg;
+
+  Color get checkBoxColor => const Color(0xff108243);
+
+  Color get itemBackground => const Color.fromARGB(255, 241, 241, 241);
+
+  Color get checkBoxOngoingColor => const Color.fromARGB(255, 58, 98, 255);
+
+  Color get checkColor => const Color.fromARGB(255, 255, 255, 255);
 }

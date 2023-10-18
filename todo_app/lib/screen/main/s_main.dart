@@ -60,13 +60,15 @@ class MainScreenState extends State<MainScreen>
   IndexedStack get pages => IndexedStack(
       index: _currentIndex,
       children: tabs
-          .mapIndexed((tab, index) => Offstage(
-                offstage: _currentTab != tab,
-                child: TabNavigator(
-                  navigatorKey: navigatorKeys[index],
-                  tabItem: tab,
-                ),
-              ))
+          .mapIndexed(
+            (tab, index) => Offstage(
+              offstage: _currentTab != tab,
+              child: TabNavigator(
+                navigatorKey: navigatorKeys[index],
+                tabItem: tab,
+              ),
+            ),
+          )
           .toList());
 
   Future<bool> _handleBackPressed() async {

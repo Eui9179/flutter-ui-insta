@@ -18,26 +18,60 @@ class TodoItem extends StatelessWidget {
     return RoundedContainer(
       margin: const EdgeInsets.only(bottom: 10),
       color: context.appColors.itemBackground,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          todo.dueDate.relativeDays.text.size(12).make().pOnly(right: 10, left: 10),
-          Row(
-            children: [
-              TodoStatusWidget(todo),
-              Expanded(child: todo.title.text.size(20).medium.make()),
-              IconButton(
-                onPressed: () async {
-                  context.holder.notifier.editTodo(context, todo);
-                },
-                icon: const Icon(
-                  EvaIcons.editOutline,
+      child: Dismissible(
+        key: ValueKey(todo.id.toString()),
+        background: getDismissibleBackground(context),
+        onDismissed: (direction) => deleteTodo(context),
+        direction: DismissDirection.endToStart,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            todo.dueDate.relativeDays.text
+                .size(12)
+                .make()
+                .pOnly(right: 10, left: 10),
+            Row(
+              children: [
+                TodoStatusWidget(todo),
+                Expanded(child: todo.title.text
+                    .size(20)
+                    .medium
+                    .make()),
+                IconButton(
+                  onPressed: () => editTodo(context),
+                  icon: const Icon(
+                    EvaIcons.editOutline,
+                  ),
                 ),
-              ),
-            ],
-          )
-        ],
-      ).pOnly(top: 10, right: 5, left: 5, bottom: 10),
+              ],
+            )
+          ],
+        ).pOnly(top: 10, right: 5, left: 5, bottom: 10),
+      ),
     );
+  }
+
+  Widget getDismissibleBackground(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        color: context.appColors.todoItemDelete,
+        borderRadius: const BorderRadius.all(Radius.circular(10)),
+      ),
+      child: Align(
+        alignment: Alignment.centerRight,
+        child: Icon(
+          EvaIcons.trash2Outline,
+          color: context.appColors.dismissibleIcon,
+        ),
+      ).pOnly(right: 15),
+    );
+  }
+
+  void editTodo(BuildContext context) {
+    context.holder.notifier.editTodo(context, todo);
+  }
+
+  void deleteTodo(BuildContext context) {
+    context.holder.notifier.deleteTodo(todo);
   }
 }

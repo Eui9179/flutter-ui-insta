@@ -49,4 +49,8 @@ abstract class AbstractThemeColors {
   Color get checkBoxOngoingColor => const Color.fromARGB(255, 58, 98, 255);
 
   Color get checkColor => const Color.fromARGB(255, 255, 255, 255);
+
+  Color get todoItemDelete => const Color.fromARGB(255, 248, 82, 82);
+
+  Color get dismissibleIcon => const Color.fromARGB(255, 255, 255, 255);
 }

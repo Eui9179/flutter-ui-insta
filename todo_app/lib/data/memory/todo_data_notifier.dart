@@ -30,4 +30,9 @@ class TodoDataNotifier extends ValueNotifier<List<Todo>> {
   void notify() {
     notifyListeners();
   }
+
+  void deleteTodo(Todo todo) async {
+    value.remove(todo);
+    notifyListeners();
+  }
 }

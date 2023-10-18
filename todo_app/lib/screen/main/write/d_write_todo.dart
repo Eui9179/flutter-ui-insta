@@ -75,7 +75,7 @@ Future<WriteTodoResult?> writeTodoBottomSheet(
                     ),
                   ),
                   RoundButton(
-                    text: '추가',
+                    text: isEditMode(editTodo) ? '완료' : '추가',
                     height: 40,
                     borderRadius: 12,
                     bgColor: context.primaryColor,
@@ -90,6 +90,8 @@ Future<WriteTodoResult?> writeTodoBottomSheet(
     },
   );
 }
+
+bool isEditMode(Todo? editTodo) => editTodo != null;
 
 void addTodo(BuildContext context, TextEditingController textController) {
   return Navigator.of(context).pop(

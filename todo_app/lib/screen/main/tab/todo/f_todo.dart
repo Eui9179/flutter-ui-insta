@@ -12,6 +12,6 @@ class TodoFragment extends StatefulWidget {
 class _TodoFragmentState extends State<TodoFragment> {
   @override
   Widget build(BuildContext context) {
-    return Expanded(child: const TodoList().pSymmetric(h: 15));
+    return const TodoList().pSymmetric(h: 15);
   }
 }

@@ -13,8 +13,9 @@ class TodoList extends StatelessWidget {
       builder: (context, todoList, child) {
         return todoList.isEmpty
             ? '할일을 작성해보세요'.text.size(30).makeCentered()
-            : Column(
-                children: todoList.map((todo) => TodoItem(todo)).toList(),
+            : ListView.builder(
+                itemCount: todoList.length,
+                itemBuilder: (context, index) => TodoItem(todoList[index]),
               );
       },
     );

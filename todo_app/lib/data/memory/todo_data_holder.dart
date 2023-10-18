@@ -1,6 +1,5 @@
 import 'package:fast_app_base/data/memory/todo_state.dart';
 import 'package:fast_app_base/data/memory/vo_todo.dart';
-import 'package:fast_app_base/screen/main/write/d_write_todo.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'todo_data_notifier.dart';

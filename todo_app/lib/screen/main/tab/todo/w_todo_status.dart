@@ -1,5 +1,5 @@
 import 'package:fast_app_base/common/common.dart';
-import 'package:fast_app_base/data/memory/todo_data_holder.dart';
+import 'package:fast_app_base/data/memory/todo_cubit.dart';
 import 'package:fast_app_base/data/memory/todo_state.dart';
 import 'package:fast_app_base/data/memory/vo_todo.dart';
 import 'package:flutter/cupertino.dart';
@@ -14,7 +14,7 @@ class TodoStatusWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Tap(
       onTap: () {
-        context.holder.changeTodoStatus(todo);
+        context.readTodoCubit.changeTodoStatus(todo);
       },
       child: SizedBox(
         width: 50,

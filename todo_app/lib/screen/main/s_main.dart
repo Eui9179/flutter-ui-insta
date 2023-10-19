@@ -1,5 +1,6 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
-import 'package:fast_app_base/data/memory/todo_cubit.dart';
+import 'package:fast_app_base/data/memory/bloc/todo_event.dart';
+import 'package:fast_app_base/data/memory/todo_bloc.dart';
 import 'package:fast_app_base/screen/main/tab/tab_item.dart';
 import 'package:fast_app_base/screen/main/tab/tab_navigator.dart';
 import 'package:flutter/material.dart';
@@ -166,5 +167,5 @@ class MainScreenState extends State<MainScreen>
     }
   }
 
-  void onAddTodo() async => context.readTodoCubit.addTodo(context);
+  void onAddTodo() async => context.readTodoBloc.add(TodoAddEvent(context));
 }

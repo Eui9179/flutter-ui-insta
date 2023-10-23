@@ -44,10 +44,6 @@ Future<WriteTodoResult?> writeTodoBottomSheet(
                   '할일을 작성해주세요'.text.size(18).bold.make(),
                   spacer,
                   _selectedDate.formattedDate.text.make(),
-                  // IconButton(
-                  //   onPressed: () => _selectDate(context, setState),
-                  //   icon: const Icon(Icons.calendar_month),
-                  // ),
                 ],
               ),
               SizedBox(
@@ -100,21 +96,4 @@ void addTodo(BuildContext context, TextEditingController textController) {
       textController.text,
     ),
   );
-}
-
-Future<DateTime?> _getPickedDate(
-    BuildContext context, DateTime selectedDate) async {
-  return await showDatePicker(
-    context: context,
-    initialDate: selectedDate,
-    firstDate: DateTime.now().subtract(const Duration(days: 365)),
-    lastDate: DateTime.now().add(const Duration(days: 365 * 10)),
-  );
-}
-
-void _selectDate(BuildContext context, StateSetter setState) async {
-  final DateTime? date = await _getPickedDate(context, _selectedDate);
-  if (date != null) {
-    setState(() => _selectedDate = date);
-  }
 }

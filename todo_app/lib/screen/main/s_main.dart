@@ -1,8 +1,9 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
-import 'package:fast_app_base/data/memory/todo_data_holder.dart';
+import 'package:fast_app_base/data/memory/todo_data_provider.dart';
 import 'package:fast_app_base/screen/main/tab/tab_item.dart';
 import 'package:fast_app_base/screen/main/tab/tab_navigator.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../common/common.dart';
 
@@ -15,6 +16,7 @@ class MainScreen extends StatefulWidget {
 
 class MainScreenState extends State<MainScreen>
     with SingleTickerProviderStateMixin {
+
   TabItem _currentTab = TabItem.todo;
   final tabs = [TabItem.todo, TabItem.search];
   final List<GlobalKey<NavigatorState>> navigatorKeys = [];
@@ -25,8 +27,6 @@ class MainScreenState extends State<MainScreen>
       navigatorKeys[_currentIndex];
 
   bool get extendBody => true;
-
-  static double get bottomNavigationBarBorderRadius => 30.0;
 
   @override
   void initState() {
@@ -42,7 +42,8 @@ class MainScreenState extends State<MainScreen>
         extendBody: extendBody, //bottomNavigationBar 아래 영역 까지 그림
         body: Padding(
           padding: EdgeInsets.only(
-              bottom: extendBody ? 60 - bottomNavigationBarBorderRadius : 0),
+            bottom: extendBody ? 60 : 0,
+          ),
           child: SafeArea(
             bottom: !extendBody,
             child: pages,
@@ -91,21 +92,15 @@ class MainScreenState extends State<MainScreen>
           BoxShadow(color: Colors.black26, spreadRadius: 0, blurRadius: 10),
         ],
       ),
-      child: ClipRRect(
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(bottomNavigationBarBorderRadius),
-          topRight: Radius.circular(bottomNavigationBarBorderRadius),
-        ),
-        child: BottomNavigationBar(
-          items: navigationBarItems(context),
-          currentIndex: _currentIndex,
-          selectedItemColor: context.appColors.text,
-          unselectedItemColor: context.appColors.iconButtonInactivate,
-          onTap: _handleOnTapNavigationBarItem,
-          showSelectedLabels: true,
-          showUnselectedLabels: true,
-          type: BottomNavigationBarType.fixed,
-        ),
+      child: BottomNavigationBar(
+        items: navigationBarItems(context),
+        currentIndex: _currentIndex,
+        selectedItemColor: context.appColors.text,
+        unselectedItemColor: context.appColors.iconButtonInactivate,
+        onTap: _handleOnTapNavigationBarItem,
+        showSelectedLabels: true,
+        showUnselectedLabels: true,
+        type: BottomNavigationBarType.fixed,
       ),
     );
   }
@@ -165,5 +160,5 @@ class MainScreenState extends State<MainScreen>
     }
   }
 
-  void onAddTodo() async => context.holder.notifier.addTodo(context);
+  void onAddTodo() async => context.read<TodoDataProvider>().addTodo(context);
 }

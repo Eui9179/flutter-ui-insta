@@ -2,9 +2,10 @@ import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:fast_app_base/common/common.dart';
 import 'package:fast_app_base/common/dart/extension/datetime_extension.dart';
 import 'package:fast_app_base/common/widget/rounded_container.dart';
-import 'package:fast_app_base/data/memory/todo_data_holder.dart';
+import 'package:fast_app_base/data/memory/todo_data_provider.dart';
 import 'package:fast_app_base/data/memory/vo_todo.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'w_todo_status.dart';
 
@@ -68,10 +69,10 @@ class TodoItem extends StatelessWidget {
   }
 
   void editTodo(BuildContext context) {
-    context.holder.notifier.editTodo(context, todo);
+    context.read<TodoDataProvider>().editTodo(context, todo);
   }
 
   void deleteTodo(BuildContext context) {
-    context.holder.notifier.deleteTodo(todo);
+    context.read<TodoDataProvider>().deleteTodo(todo);
   }
 }

@@ -81,6 +81,10 @@ dependencies:
   #provider
   provider: ^6.0.5
 
+  #get_it
+  get_it: ^7.6.4
+  injectable: ^2.3.2
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -93,6 +97,7 @@ dev_dependencies:
   flutter_lints: ^2.0.0
   retrofit_generator: '5.0.0'
   build_runner: '2.3.3'
+  injectable_generator: ^2.4.1
   json_serializable: ^6.6.1
   isar_generator: *isar_version
   mock_web_server: ^5.0.0-nullsafety.1

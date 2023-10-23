@@ -1,9 +1,11 @@
 import 'package:fast_app_base/common/common.dart';
+import 'package:fast_app_base/common/get_it/get_it.dart';
 import 'package:fast_app_base/common/theme/custom_theme_app.dart';
-import 'package:fast_app_base/data/memory/todo_data_provider.dart';
+import 'package:fast_app_base/data/memory/todo_provider.dart';
 import 'package:fast_app_base/screen/main/s_main.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 
 class App extends StatefulWidget {
   static final GlobalKey<NavigatorState> navigatorKey = GlobalKey();
@@ -35,8 +37,8 @@ class AppState extends State<App> with Nav, WidgetsBindingObserver {
   Widget build(BuildContext context) {
     return CustomThemeApp(
       child: Builder(builder: (context) {
-        return ChangeNotifierProvider<TodoDataProvider>(
-          create: (_) => TodoDataProvider(),
+        return ChangeNotifierProvider<TodoProvider>(
+          create: (_) => getIt.get<TodoProvider>(),
           child: MaterialApp(
             navigatorKey: App.navigatorKey,
             title: 'Image Finder',

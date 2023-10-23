@@ -5,3 +5,5 @@
 - `showModalBottomSheet`
 - `velocity_x`
 - `ValueNotifier`
+- `provider`
+- `get_it`

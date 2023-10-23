@@ -1,7 +1,10 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
-import 'package:fast_app_base/data/memory/todo_data_provider.dart';
+import 'package:fast_app_base/common/get_it/get_it.dart';
+import 'package:fast_app_base/data/memory/todo_provider.dart';
 import 'package:fast_app_base/screen/main/tab/tab_item.dart';
 import 'package:fast_app_base/screen/main/tab/tab_navigator.dart';
+import 'package:fast_app_base/screen/main/write/d_write_todo.dart';
+import 'package:fast_app_base/screen/main/write/vo_write_todo_result.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -160,5 +163,10 @@ class MainScreenState extends State<MainScreen>
     }
   }
 
-  void onAddTodo() async => context.read<TodoDataProvider>().addTodo(context);
+  void onAddTodo() async {
+    final WriteTodoResult? result = await writeTodoBottomSheet(context);
+    if (result != null && mounted) {
+      getIt.get<TodoProvider>().addTodo(result);
+    }
+  }
 }

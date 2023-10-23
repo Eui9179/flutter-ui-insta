@@ -1,30 +1,23 @@
 import 'package:fast_app_base/data/memory/todo_state.dart';
 import 'package:fast_app_base/data/memory/vo_todo.dart';
-import 'package:fast_app_base/screen/main/write/d_write_todo.dart';
 import 'package:fast_app_base/screen/main/write/vo_write_todo_result.dart';
 import 'package:flutter/material.dart';
+import 'package:injectable/injectable.dart';
 
-class TodoDataProvider with ChangeNotifier {
+@singleton
+class TodoProvider with ChangeNotifier {
   final List<Todo> todoList = [];
 
-  void addTodo(BuildContext context) async {
-    final WriteTodoResult? result = await writeTodoBottomSheet(context);
-    if (result != null) {
-      todoList.add(Todo.of(result));
-    }
+  void addTodo(WriteTodoResult result) {
+    todoList.add(Todo.of(result));
     notifyListeners();
   }
 
-  void editTodo(BuildContext context, Todo oldTodo) async {
-    final WriteTodoResult? result = await writeTodoBottomSheet(
-      context,
-      editTodo: oldTodo,
-    );
-    if (result != null) {
-      todoList.firstWhere((todo) => todo == oldTodo)
-        ..title = result.text
-        ..dueDate = result.dateTime;
-    }
+  void editTodo(WriteTodoResult result, Todo oldTodo) {
+    todoList.firstWhere((todo) => todo == oldTodo)
+      ..title = result.text
+      ..dueDate = result.dateTime;
+    notifyListeners();
   }
 
   void deleteTodo(Todo todo) {

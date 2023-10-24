@@ -9,7 +9,12 @@ class TodoProvider with ChangeNotifier {
   final List<Todo> todoList = [];
 
   void addTodo(WriteTodoResult result) {
-    todoList.add(Todo.of(result));
+    todoList.add(Todo(
+      id: DateTime.now().millisecondsSinceEpoch,
+      title: result.text,
+      dueDate: result.dateTime,
+      createdTime: DateTime.now(),
+    ));
     notifyListeners();
   }
 

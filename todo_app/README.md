@@ -7,3 +7,5 @@
 - `ValueNotifier`
 - `provider`
 - `get_it`
+- `dio`
+- `retrofit`

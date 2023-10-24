@@ -85,6 +85,9 @@ dependencies:
   get_it: ^7.6.4
   injectable: ^2.3.2
 
+  #freezed
+  freezed_annotation: ^2.4.1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -102,6 +105,8 @@ dev_dependencies:
   isar_generator: *isar_version
   mock_web_server: ^5.0.0-nullsafety.1
   test: ^1.22.0
+
+  freezed: ^2.4.5
 
 
 # For information on the generic Dart part of this file, see the

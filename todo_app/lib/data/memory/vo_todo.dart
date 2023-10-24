@@ -1,26 +1,22 @@
 import 'package:fast_app_base/data/memory/todo_state.dart';
-import 'package:fast_app_base/screen/main/write/vo_write_todo_result.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class Todo {
-  Todo({
-    required this.id,
-    required this.title,
-    required this.dueDate,
-    this.status = TodoStatus.incomplete,
-  }) : createdTime = DateTime.now();
+part 'vo_todo.freezed.dart';
 
-  int id;
-  String title;
-  final DateTime createdTime;
-  DateTime? modifyTime;
-  DateTime dueDate;
-  TodoStatus status;
+part 'vo_todo.g.dart';
 
-  factory Todo.of(WriteTodoResult result) {
-    return Todo(
-      id: DateTime.now().millisecondsSinceEpoch,
-      title: result.text,
-      dueDate: result.dateTime,
-    );
-  }
+@unfreezed
+class Todo with _$Todo {
+  Todo._();
+
+  factory Todo({
+    required final int id,
+    required String title,
+    required DateTime dueDate,
+    @Default(TodoStatus.incomplete) TodoStatus status,
+    required DateTime createdTime,
+    DateTime? modifiedTime,
+  }) = _Todo;
+
+  factory Todo.fromJson(Map<String, Object?> json) => _$TodoFromJson(json);
 }

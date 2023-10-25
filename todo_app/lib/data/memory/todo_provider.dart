@@ -1,5 +1,8 @@
+import 'package:fast_app_base/common/get_it/get_it.dart';
+import 'package:fast_app_base/data/dto/dto_todo_for_save.dart';
 import 'package:fast_app_base/data/memory/todo_state.dart';
 import 'package:fast_app_base/data/memory/vo_todo.dart';
+import 'package:fast_app_base/data/remote/todo_api.dart';
 import 'package:fast_app_base/screen/main/write/vo_write_todo_result.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
@@ -8,26 +11,49 @@ import 'package:injectable/injectable.dart';
 class TodoProvider with ChangeNotifier {
   final List<Todo> todoList = [];
 
-  void addTodo(WriteTodoResult result) {
-    todoList.add(Todo(
-      id: DateTime.now().millisecondsSinceEpoch,
-      title: result.text,
-      dueDate: result.dateTime,
-      createdTime: DateTime.now(),
-    ));
+  final TodoApi todoRepository = getIt.get<TodoApi>();
+
+  TodoProvider() {
+    _initTodoData();
     notifyListeners();
   }
 
-  void editTodo(WriteTodoResult result, Todo oldTodo) {
-    todoList.firstWhere((todo) => todo == oldTodo)
-      ..title = result.text
-      ..dueDate = result.dateTime;
-    notifyListeners();
+  void addTodo(WriteTodoResult result) {
+    final todoForSave = TodoForSave.of(result);
+    todoRepository.addTodo(todoForSave).then((id) {
+      todoList.add(Todo(
+        id: id,
+        title: todoForSave.title,
+        dueDate: todoForSave.dueDate,
+        createdTime: todoForSave.createdTime,
+      ));
+      notifyListeners();
+    });
+  }
+
+  void updateTodoStatus(Todo todo) {
+    changeTodoStatus(todo);
+    editTodo(todo);
+  }
+
+  void editTodo(Todo todoForSave) {
+    todoForSave.modifiedTime = DateTime.now();
+    todoRepository.editTodo(todoForSave).then((_) {
+      final todo = todoList.firstWhere((todo) => todo.id == todoForSave.id);
+      todo
+        ..title = todoForSave.title
+        ..dueDate = todoForSave.dueDate
+        ..modifiedTime = todoForSave.modifiedTime
+        ..status = todoForSave.status;
+      notifyListeners();
+    });
   }
 
   void deleteTodo(Todo todo) {
-    todoList.remove(todo);
-    notifyListeners();
+    todoRepository.deleteTodo(todo.id).then((value) {
+      todoList.remove(todo);
+      notifyListeners();
+    });
   }
 
   void changeTodoStatus(Todo todo) {
@@ -39,6 +65,10 @@ class TodoProvider with ChangeNotifier {
       case TodoStatus.complete:
         todo.status = TodoStatus.incomplete;
     }
-    notifyListeners();
+  }
+
+  void _initTodoData() async {
+    List<Todo> remoteTodoList = await todoRepository.getTodoList();
+    todoList.addAll(remoteTodoList);
   }
 }

@@ -37,10 +37,7 @@ class TodoItem extends StatelessWidget {
             Row(
               children: [
                 TodoStatusWidget(todo),
-                Expanded(child: todo.title.text
-                    .size(20)
-                    .medium
-                    .make()),
+                Expanded(child: todo.title.text.size(20).medium.make()),
                 IconButton(
                   onPressed: () => editTodo(context),
                   icon: const Icon(
@@ -78,7 +75,10 @@ class TodoItem extends StatelessWidget {
     );
 
     if (result != null) {
-      todoModel.editTodo(result, todo);
+      todoModel.editTodo(todo.copyWith(
+        title: result.text,
+        dueDate: result.dateTime,
+      ));
     }
   }
 

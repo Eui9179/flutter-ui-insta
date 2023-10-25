@@ -12,9 +12,10 @@ class TodoStatusWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final TodoProvider todoProvider = getIt.get<TodoProvider>();
     return Tap(
       onTap: () {
-        getIt.get<TodoProvider>().changeTodoStatus(todo);
+        todoProvider.updateTodoStatus(todo);
       },
       child: SizedBox(
         width: 50,

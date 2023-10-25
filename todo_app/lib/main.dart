@@ -3,12 +3,11 @@ import 'package:flutter/material.dart';
 
 import 'app.dart';
 import 'common/data/app_preferences.dart';
-import 'data/memory/todo_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await AppPreferences.init();
-  configureInjection();
+  initGetIt();
 
   runApp(const App());
 }

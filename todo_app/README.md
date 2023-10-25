@@ -3,9 +3,8 @@
 - `InheritedWidget`
 - `Dismissible`을 사용하여 todo 삭제
 - `showModalBottomSheet`
-- `velocity_x`
-- `ValueNotifier`
-- `provider`
-- `get_it`
+- `provider`을 이용한 상태관리
+- `get_it`를 사용한 의존성 관리
 - `dio`
 - `retrofit`
+- `build_runner`

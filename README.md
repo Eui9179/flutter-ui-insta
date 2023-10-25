@@ -4,6 +4,19 @@
 
 ---
 
+### 23.10.25 Todo App
+
+- `provider`을 이용한 상태관리
+- `get_it`를 사용한 의존성 관리 (provider, repository)
+- `dio`을 사용하여 서버 통신
+- `retrofit`
+- `build_runner`
+- `Dismissible`을 사용하여 todo 삭제
+- `showModalBottomSheet`
+
+#### Spring boot Server
+https://github.com/Eui9179/simple-todo-server
+
 ### 23.10.15 Video Player
 
 `video_player`

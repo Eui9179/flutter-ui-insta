@@ -14,6 +14,8 @@
 - `Dismissible`을 사용하여 todo 삭제
 - `showModalBottomSheet`
 
+![화면 기록 2023-10-25 오후 5 15 53](https://github.com/Eui9179/flutter-ui-practice/assets/83222282/e5d37690-4e6f-4e59-96b4-ce122c0df5a3)
+
 #### Spring boot Server
 https://github.com/Eui9179/simple-todo-server
 

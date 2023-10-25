@@ -8,3 +8,6 @@
 - `dio`
 - `retrofit`
 - `build_runner`
+
+# Server
+https://github.com/Eui9179/simple-todo-server
